@@ -1,10 +1,7 @@
 import org.junit.Assert
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
 import kotlin.IllegalArgumentException
 
-@RunWith(JUnit4::class)
 class DescTest {
 
     @Test(expected = IllegalArgumentException::class)
@@ -47,6 +44,21 @@ class DescTest {
         )
 
         Assert.assertEquals(null, Desc(cells).move(Desc.Movement.RIGHT))
+    }
+
+    @Test
+    fun `equals test`() {
+        val cells = listOf(
+            7.toCell(), 4.toCell(), 2.toCell(),
+            3.toCell(), 5.toCell(), 8.toCell(),
+            7.toCell(), 1.toCell(), Cell.EmptyCell
+        )
+        val finishCells = listOf(
+            7.toCell(), 4.toCell(), 2.toCell(),
+            3.toCell(), 5.toCell(), 8.toCell(),
+            7.toCell(), 1.toCell(), Cell.EmptyCell
+        )
+        Assert.assertEquals(cells, finishCells)
     }
 
     @Test

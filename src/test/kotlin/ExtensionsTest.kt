@@ -1,9 +1,6 @@
 import org.junit.Assert
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
 
-@RunWith(JUnit4::class)
 class ExtensionsTest {
 
     @Test
@@ -24,6 +21,24 @@ class ExtensionsTest {
     fun `list items swap`() {
         val list = listOf(1, 2, 3, 4)
         Assert.assertEquals(list.swap(1, 2), listOf(1, 3, 2, 4))
+    }
+
+    @Test
+    fun `to cell test`() {
+        Assert.assertEquals(1.toCell(), Cell.NormalCell(1))
+    }
+
+    @Test
+    fun `graph fold`() {
+        val graph = Node(3, listOf(
+            Node(4, emptyList()),
+            Node(5, emptyList())
+        ))
+        val sum = 12
+        val actualSum = graph.fold(0) { acc: Int, item: Int ->
+            acc + item
+        }
+        Assert.assertEquals(sum, actualSum)
     }
 
 }
