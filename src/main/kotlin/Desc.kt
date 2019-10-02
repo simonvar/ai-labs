@@ -1,7 +1,6 @@
-import kotlin.IllegalArgumentException
 import kotlin.math.sqrt
 
-data class Desc(private val cells: List<Cell>) {
+data class Desc(private val cells: List<Cell>) : Iterable<Cell> by cells {
 
     private val emptyPosition by lazy {
         cells.indexOfFirst {
@@ -12,7 +11,7 @@ data class Desc(private val cells: List<Cell>) {
     private val columnSize = sqrt(cells.size.toDouble()).toInt()
 
     init {
-        if (columnSize * columnSize != cells.size) throw IllegalArgumentException("Illegal list size")
+        require(columnSize * columnSize == cells.size) { "Illegal list size" }
     }
 
     enum class Movement(
@@ -38,6 +37,10 @@ data class Desc(private val cells: List<Cell>) {
         return Desc(
             cells.swap(emptyPosition, newListPosition)
         )
+    }
+
+    fun position(cell: Cell): Pair<Int, Int> {
+        return columnSize.xyPosition(indexOf(cell))
     }
 
     override fun toString(): String {

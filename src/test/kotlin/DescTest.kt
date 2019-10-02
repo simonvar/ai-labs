@@ -47,6 +47,11 @@ class DescTest {
     }
 
     @Test
+    fun `move all test`() {
+
+    }
+
+    @Test
     fun `equals test`() {
         val cells = listOf(
             7.toCell(), 4.toCell(), 2.toCell(),
@@ -82,4 +87,18 @@ class DescTest {
         Assert.assertEquals(descString, actual)
     }
 
+    @Test
+    fun `cell position test`() {
+        val cells = listOf(
+            7.toCell(), 4.toCell(), 2.toCell(),
+            3.toCell(), 5.toCell(), 8.toCell(),
+            7.toCell(), 1.toCell(), Cell.EmptyCell
+        )
+
+        val desc = Desc(cells)
+
+        val actualPosition = desc.position(5.toCell())
+        val expectedPosition = 1 to 1
+        Assert.assertEquals(expectedPosition, actualPosition)
+    }
 }

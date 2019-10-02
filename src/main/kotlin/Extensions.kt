@@ -31,3 +31,11 @@ fun <T> Node<T>.forEach(comput: (T) -> Unit) {
     }
 }
 
+fun Desc.moveAll() : List<Desc> {
+    return sequenceOf(
+        move(Desc.Movement.RIGHT),
+        move(Desc.Movement.DOWN),
+        move(Desc.Movement.LEFT),
+        move(Desc.Movement.UP)
+    ).filterNotNull().toList()
+}

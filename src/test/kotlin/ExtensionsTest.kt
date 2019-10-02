@@ -30,15 +30,36 @@ class ExtensionsTest {
 
     @Test
     fun `graph fold`() {
-        val graph = Node(3, listOf(
-            Node(4, emptyList()),
-            Node(5, emptyList())
-        ))
+        val graph = Node(
+            3, listOf(
+                Node(4, emptyList()),
+                Node(5, emptyList())
+            )
+        )
         val sum = 12
         val actualSum = graph.fold(0) { acc: Int, item: Int ->
             acc + item
         }
         Assert.assertEquals(sum, actualSum)
+    }
+
+    @Test
+    fun `move all test`() {
+        val cells = listOf(
+            1.toCell(), 2.toCell(), 3.toCell(),
+            4.toCell(), Cell.EmptyCell, 6.toCell(),
+            7.toCell(), 8.toCell(), 5.toCell()
+        )
+        val desc = Desc(cells)
+
+        val movedDescs = listOf(
+            desc.move(Desc.Movement.RIGHT),
+            desc.move(Desc.Movement.DOWN),
+            desc.move(Desc.Movement.LEFT),
+            desc.move(Desc.Movement.UP)
+        )
+
+        Assert.assertEquals(movedDescs, desc.moveAll())
     }
 
 }
