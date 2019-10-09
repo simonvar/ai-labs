@@ -26,8 +26,8 @@ class DeepGamerTest {
         val finishDesc = Desc(finishCells)
         var i = 0
         val resultGame = DeepGamer(finishDesc, 50) {
-//            println(i)
-//            println(it)
+            println(i)
+            println(it)
             i++
         }
         Assert.assertEquals(finishDesc, resultGame.invoke(desc))
