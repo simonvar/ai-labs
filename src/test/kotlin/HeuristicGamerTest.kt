@@ -7,7 +7,7 @@ class HeuristicGamerTest {
     fun `test correct solve`() {
         val cells = listOf(
             4.toCell(), 8.toCell(), 1.toCell(),
-            Cell.EmptyCell, 3.toCell(), 6.toCell(),
+            Cell.EmptyCell,3.toCell(), 6.toCell(),
             2.toCell(), 7.toCell(), 5.toCell()
         )
 
@@ -18,16 +18,18 @@ class HeuristicGamerTest {
         )
 //        val finishCells = listOf(
 //            7.toCell(), 4.toCell(), 2.toCell(),
-//            Cell.EmptyCell, 3.toCell(), 8.toCell(),
-//            6.toCell(), 5.toCell(), 1.toCell()
+//            Cell.EmptyCell, 5.toCell(), 8.toCell(),
+//            3.toCell(), 6.toCell(),  1.toCell()
 //        )
 
         val desc = Desc(cells)
         val finishDesc = Desc(finishCells)
-
+//        val gHeuristic = H2(desc)
+        val hHeuristic = H2(finishDesc)
         var i = 0
-        val resultGame = HeuristicGamer(H2(finishDesc)) {
-            println(H2(finishDesc).invoke(it))
+        val resultGame = HeuristicGamer(hHeuristic) {
+            println(hHeuristic(it))
+//            println(gHeuristic(it))
             println(i)
             println(it)
             i++
