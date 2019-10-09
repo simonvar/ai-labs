@@ -19,11 +19,12 @@ class H2(
 ) : Heuristic {
 
     override fun invoke(desc: Desc): Float {
+
         return desc
             .map {
                 val actual = desc.position(it)
                 val expected = finishDesc.position(it)
-                abs(actual.first - expected.first + actual.second - expected.second)
+                abs(actual.first - expected.first) + abs(actual.second - expected.second)
             }
             .reduce { acc, i ->
                 acc + i

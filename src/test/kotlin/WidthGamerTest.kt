@@ -1,8 +1,8 @@
-import gamer.HeuristicGamer
 import org.junit.Assert
 import org.junit.Test
+import gamer.WidthGamer
 
-class HeuristicGamerTest {
+class WidthGamerTest {
     @Test
     fun `test correct solve`() {
         val cells = listOf(
@@ -24,16 +24,14 @@ class HeuristicGamerTest {
 
         val desc = Desc(cells)
         val finishDesc = Desc(finishCells)
-//        val gHeuristic = H2(desc)
-        val hHeuristic = H2(finishDesc)
         var i = 0
-        val resultGame = HeuristicGamer(hHeuristic) {
-            println(hHeuristic(it))
-//            println(gHeuristic(it))
-            println(i)
-            println(it)
+        val resultGame = WidthGamer(finishDesc) {
+//            println(i)
+//            println(it)
             i++
         }
         Assert.assertEquals(finishDesc, resultGame.invoke(desc))
     }
+
+
 }
