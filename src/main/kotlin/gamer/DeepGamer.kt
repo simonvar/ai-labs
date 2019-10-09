@@ -8,6 +8,7 @@ import java.lang.IllegalArgumentException
 
 class DeepGamer(
     private val finishDesc: Desc,
+    private val maxDeep: Int,
     private val visitor: (Desc) -> Unit
 ) : (Desc) -> Desc {
 
@@ -19,7 +20,7 @@ class DeepGamer(
     private fun next(head: Node<Desc>, deep: Int, prevNode: Node<Desc>): Node<Desc>? {
         visitor(prevNode.value)
         if (prevNode.value == finishDesc) return prevNode
-        if (deep == 32) {
+        if (deep == maxDeep) {
             return null
         }
         val descs = prevNode.value.moveAll()
